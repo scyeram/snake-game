@@ -17,17 +17,17 @@ win.nodelay(1) # -1                 # there should be no delay
 snake = [(4, 10), (4, 9), (4, 8)]   # snake's starting coordinates
 food = (10, 20)                     # food's starting coordinates
 
-win.addch(food[0], food[1], '#')    # add character to depict the food
+win.addch(food[0], food[1], '@')    # add character to depict the food
 
-# maing game logic
-score = 0                           # initialize score to 0
+#game logic
+score = 0                           # starting score 0
     
 ESC = 27                            # ESC key has ASCII value of 27
 key = curses.KEY_RIGHT              # store ASCII value of right key
-win.addch(food[0], food[1], 'O')    
+win.addch(food[0], food[1], '@')    
 while key != ESC:                   # run the game until ESC is pressed
     win.addstr(0, 2, 'Score ' + str(score) + ' ')
-    win.timeout(100)                # game runs on 100 milliseconds per frame
+    win.timeout(100)                # 100 milliseconds per frame
 
     prev_key = key                  
     event = win.getch()
@@ -68,13 +68,13 @@ while key != ESC:                   # run the game until ESC is pressed
             food = (randint(1,18), randint(1,58))
             if food in snake:
                 food = ()
-        win.addch(food[0], food[1], '#')
+        win.addch(food[0], food[1], '@')
     else:
         # move snake
         last = snake.pop()
         win.addch(last[0], last[1], ' ')
     
-    win.addch(snake[0][0], snake[0][1], '*')
+    win.addch(snake[0][0], snake[0][1], '=')
 
 # end curses window on end of game loop
 curses.endwin()
